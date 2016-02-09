@@ -1,4 +1,5 @@
 class ScoringSystem
+  HIGHSCORES_PATH = File.join(File.dirname(__FILE__), 'highscores.txt')
   ROWS_CLEARED_MULTIPLIERS = {0 => 0, 1 => 40, 2 => 100, 3 => 300, 4 => 1200}
   LINES_PER_LEVEL = 10
 
@@ -19,6 +20,16 @@ class ScoringSystem
 
     increase_score(ROWS_CLEARED_MULTIPLIERS[number_of_rows] * (@level + 1))
     update_level
+  end
+
+  def submit_highscore
+    scores = [@score]
+
+    scores << YAML.load(File.open(HIGHSCORES_PATH, "r")) if File.exist?(HIGHSCORES_PATH)
+
+    file = File.new(HIGHSCORES_PATH, "w")
+    file << scores.flatten.sort.reverse[0..9].to_yaml
+    file.close
   end
 
   private
