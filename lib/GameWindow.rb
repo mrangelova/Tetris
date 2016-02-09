@@ -65,9 +65,9 @@ class GameWindow < Gosu::Window
     CELL_SIZE = 18
 
     CELL_IMAGES = {
-      'empty_cells'    => Gosu::Image.new(File.join(File.dirname(__FILE__), 'default_cell.png')),
-      'occupied_cells' => Gosu::Image.new(File.join(File.dirname(__FILE__), 'occupied_cell.png')),
-      'live_cells'     => Gosu::Image.new(File.join(File.dirname(__FILE__), 'red_cell.png')),
+      'empty_cells'    => Gosu::Image.new(File.join(File.dirname(__FILE__), '..', 'media', 'default_cell.png')),
+      'occupied_cells' => Gosu::Image.new(File.join(File.dirname(__FILE__), '..', 'media', 'occupied_cell.png')),
+      'live_cells'     => Gosu::Image.new(File.join(File.dirname(__FILE__), '..', 'media', 'live_cell.png')),
     }
 
     def initialize(game)
