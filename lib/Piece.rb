@@ -60,6 +60,18 @@ class Piece
     occupied_cells_positions
   end
 
+  def rotate
+    identity_horizontally_mirrored_matrix = Matrix.build(@size, @size) do |row, column|
+      row + column == @size - 1 ? 1 : 0
+    end
+
+    @shape.dup.transpose * identity_horizontally_mirrored_matrix
+  end
+
+  def rotate!
+    @shape = rotate
+  end
+
   private
 
   def random_shape
