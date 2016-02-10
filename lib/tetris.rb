@@ -1,0 +1,5 @@
+require_relative './tetris/piece'
+require_relative './tetris/playfield'
+require_relative './tetris/tetromino'
+require_relative './tetris/scoring_system'
+require_relative './tetris/game'
