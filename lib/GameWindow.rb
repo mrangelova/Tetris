@@ -4,6 +4,7 @@ class GameWindow < Gosu::Window
     pause:        "PauseMode.new(self)",
     leader_board: "LeaderBoardMode.new(self)",
     game_over:    "GameOverMode.new(self)",
+    main_menu:    "MainMenuMode.new(self)",
   }
 
   attr_reader :font, :current_mode
@@ -14,7 +15,7 @@ class GameWindow < Gosu::Window
     self.caption = 'Tetris'
     @font = Gosu::Font.new(self, 'Arial', 27)
     @game = Game.new
-    @current_mode = eval(MODES[:play])
+    @current_mode = eval(MODES[:main_menu])
   end
 
   def needs_cursor?
@@ -63,6 +64,22 @@ class GameWindow < Gosu::Window
 
     def change_mode(mode)
       @game_window.change_mode(mode)
+    end
+  end
+
+  class MainMenuMode < Mode
+    def button_down(id)
+      case id
+        when Gosu::KbN      then change_mode(:play)
+        when Gosu::KbEscape then close
+        when Gosu::KbV      then change_mode(:leader_board)
+      end
+    end
+
+    def draw
+      font.draw('Press N to start new game', 150, 150, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
+      font.draw('Press Esc to exit', 150, 170, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
+      font.draw('Press V to view highscores', 150, 210, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
     end
   end
 
