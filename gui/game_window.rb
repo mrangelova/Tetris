@@ -240,6 +240,11 @@ module Tetris
           9 => 0.05,
         }
 
+        SOUNDS = {
+          play:     Gosu::Song.new(File.join(File.dirname(__FILE__), '..', 'media', 'play.ogg')),
+          end_game: Gosu::Sample.new(File.join(File.dirname(__FILE__), '..', 'media', 'end.wav')),
+        }
+
         def initialize(game_window)
           super(game_window)
           @grid = Grid.new(game)
@@ -257,6 +262,7 @@ module Tetris
           font.draw('NEXT PIECE:', 330, 210, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
           @grid.draw
           @next_tetromino_preview.draw
+          SOUNDS[:play].play
         end
 
         def update
@@ -294,6 +300,8 @@ module Tetris
         end
 
         def end_game
+          SOUNDS[:play].stop
+          SOUNDS[:end_game].play
           game.scoring_system.submit_highscore
           change_mode(:game_over)
         end
