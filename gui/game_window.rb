@@ -210,6 +210,23 @@ module Tetris
           end
         end
 
+        class NextTetrominoPreview
+          X_OFFSET = 270
+          Y_OFFSET = 250
+          CELL_SIZE = 18
+          CELL_IMAGE = Gosu::Image.new(File.join(File.dirname(__FILE__), '..', 'media', 'live_cell.png'))
+
+          def initialize(game)
+            @game = game
+          end
+
+          def draw
+            @game.next_tetromino.cells.each do |cell|
+              CELL_IMAGE.draw(X_OFFSET + cell[1] * CELL_SIZE, Y_OFFSET + cell[0] * CELL_SIZE, 0)
+            end
+          end
+        end
+
         LEVEL_UPDATE_INTERVAL = {
           0 => 0.9,
           1 => 0.8,
@@ -226,6 +243,7 @@ module Tetris
         def initialize(game_window)
           super(game_window)
           @grid = Grid.new(game)
+          @next_tetromino_preview = NextTetrominoPreview.new(game)
           @last_update = Time.now
         end
 
@@ -236,7 +254,9 @@ module Tetris
           font.draw('LEVEL', 330, 150, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
           font.draw("#{game.scoring_system.level}",
                      330, 170, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
+          font.draw('NEXT PIECE:', 330, 210, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
           @grid.draw
+          @next_tetromino_preview.draw
         end
 
         def update
