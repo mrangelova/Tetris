@@ -57,6 +57,10 @@ module Tetris
           raise NotImplementedError, "#{self.class} has not implemented method draw"
         end
 
+        def close
+          @game_window.close
+        end
+
         private
 
         def game
