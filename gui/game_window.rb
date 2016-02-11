@@ -211,22 +211,22 @@ module Tetris
         end
 
         LEVEL_UPDATE_INTERVAL = {
-          0 => 60,
-          1 => 50,
-          2 => 40,
-          3 => 35,
-          4 => 30,
-          5 => 25,
-          6 => 20,
-          7 => 15,
-          8 => 10,
-          9 => 5,
+          0 => 0.9,
+          1 => 0.8,
+          2 => 0.7,
+          3 => 0.6,
+          4 => 0.5,
+          5 => 0.4,
+          6 => 0.3,
+          7 => 0.2,
+          8 => 0.1,
+          9 => 0.05,
         }
 
         def initialize(game_window)
           super(game_window)
           @grid = Grid.new(game)
-          @updates = 0
+          @last_update = Time.now
         end
 
         def draw
@@ -242,9 +242,10 @@ module Tetris
         def update
           end_game if game.over?
 
-          game.update if should_update?
-
-          @updates += 1
+          if should_update?
+            game.update
+            @last_update = Time.now
+          end
         end
 
         def button_down(id)
@@ -263,7 +264,7 @@ module Tetris
         private
 
         def should_update?
-          @updates % LEVEL_UPDATE_INTERVAL[game.scoring_system.level] == 0
+          Time.now - @last_update > LEVEL_UPDATE_INTERVAL[game.scoring_system.level]
         end
 
         def save_game
