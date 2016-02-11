@@ -240,15 +240,11 @@ module Tetris
         end
 
         def update
-          if game.over?
-            end_game
-          else
-            if @updates % LEVEL_UPDATE_INTERVAL[game.scoring_system.level] == 0
-              game.update
-            end
+          end_game if game.over?
 
-            @updates += 1
-          end
+          game.update if should_update?
+
+          @updates += 1
         end
 
         def button_down(id)
@@ -265,6 +261,10 @@ module Tetris
         end
 
         private
+
+        def should_update?
+          @updates % LEVEL_UPDATE_INTERVAL[game.scoring_system.level] == 0
+        end
 
         def save_game
           file = File.new(File.join(File.dirname(__FILE__), 'saved_game.txt'), "w")
