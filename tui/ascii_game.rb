@@ -8,7 +8,6 @@ module Tetris
         @game = Game.new
         @ascii_grid = AsciiGrid.new(@game)
         @user_playing = true
-        system 'cls'
       end
 
       def run
