@@ -33,7 +33,7 @@ module Tetris
           occupied_cells_positions << [row_index, column_index] if cell == 1
         end
 
-        occupied_cells_positions.map do |cell|
+        occupied_cells_positions.map! do |cell|
           [cell[0] + @tetromino.top_left_position[0], cell[1] + @tetromino.top_left_position[1]]
         end
 
