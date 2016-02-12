@@ -6,19 +6,6 @@ module Tetris
     class AsciiGame
       SLEEP_LOOP = 0.02
 
-      LEVELS = {
-        0 => 0.8,
-        1 => 0.7167,
-        2 => 0.6333,
-        3 => 0.55,
-        4 => 0.4667,
-        5 => 0.3833,
-        6 => 0.3,
-        7 => 0.2166,
-        8 => 0.1333,
-        9 => 0.1,
-      }
-
       def initialize()
         @game = Game.new
         @ascii_grid = AsciiGrid.new(@game)
@@ -38,19 +25,12 @@ module Tetris
         puts ' M - DROP TO BOTTOM'
       end
 
-      def falling_speed
-        LEVELS[@game.scoring_system.level]
-      end
-
       def run
-        last_update = Time.now
-
         loop do
           execute_user_command
 
-          if Time.now - last_update > falling_speed
+          if @game.should_update?
             @game.update
-            last_update = Time.now
             render_game
           end
 

@@ -231,19 +231,6 @@ module Tetris
           end
         end
 
-        LEVEL_UPDATE_INTERVAL = {
-          0 => 0.9,
-          1 => 0.8,
-          2 => 0.7,
-          3 => 0.6,
-          4 => 0.5,
-          5 => 0.4,
-          6 => 0.3,
-          7 => 0.2,
-          8 => 0.1,
-          9 => 0.05,
-        }
-
         SOUNDS = {
           play:     Gosu::Song.new(File.join(File.dirname(__FILE__), '..', 'media', 'play.ogg')),
           end_game: Gosu::Sample.new(File.join(File.dirname(__FILE__), '..', 'media', 'end.wav')),
@@ -253,7 +240,6 @@ module Tetris
           super(game_window)
           @grid = Grid.new(game)
           @next_tetromino_preview = NextTetrominoPreview.new(game)
-          @last_update = Time.now
         end
 
         def draw
@@ -272,10 +258,7 @@ module Tetris
         def update
           end_game if game.over?
 
-          if should_update?
-            game.update
-            @last_update = Time.now
-          end
+          game.update if game.should_update?
         end
 
         def button_down(id)
@@ -292,10 +275,6 @@ module Tetris
         end
 
         private
-
-        def should_update?
-          Time.now - @last_update > LEVEL_UPDATE_INTERVAL[game.scoring_system.level]
-        end
 
         def save_game
           file = File.new(File.join(File.dirname(__FILE__), 'saved_game.txt'), "w")
