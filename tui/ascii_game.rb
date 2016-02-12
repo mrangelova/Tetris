@@ -4,8 +4,6 @@ require_relative './get_key'
 module Tetris
   module TUI
     class AsciiGame
-      SLEEP_LOOP = 0.02
-
       def initialize()
         @game = Game.new
         @ascii_grid = AsciiGrid.new(@game)
@@ -40,8 +38,6 @@ module Tetris
             puts "\n\n GAME OVER"
             break
           end
-
-          sleep SLEEP_LOOP
         end
       end
 
