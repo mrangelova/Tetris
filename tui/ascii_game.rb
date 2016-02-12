@@ -9,6 +9,7 @@ module Tetris
       def initialize()
         @game = Game.new
         @ascii_grid = AsciiGrid.new(@game)
+        @user_playing = true
         system 'cls'
       end
 
@@ -23,6 +24,7 @@ module Tetris
         puts ' K - DROP'
         puts ' I - ROTATE'
         puts ' M - DROP TO BOTTOM'
+        puts ' Q - QUIT'
       end
 
       def run
@@ -34,7 +36,7 @@ module Tetris
             render_game
           end
 
-          if @game.over?
+          if @game.over? or not @user_playing
             puts "\n\n GAME OVER"
             break
           end
@@ -55,6 +57,7 @@ module Tetris
           when 'l', 'L' then @game.tetromino.move_right
           when 'k', 'K' then @game.tetromino.drop
           when 'm', 'M' then @game.tetromino.drop_to_bottom
+          when 'q', 'Q' then @user_playing = false
         end
       end
     end
