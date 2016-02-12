@@ -1,4 +1,5 @@
-require_relative 'ascii_grid'
+require_relative './ascii_grid'
+require_relative './get_key'
 
 module Tetris
   module TUI
@@ -29,6 +30,12 @@ module Tetris
         puts @ascii_grid.render
         puts "\n LEVEL: #{@game.scoring_system.level}"
         puts "\n SCORE: #{@game.scoring_system.score}"
+        puts "\n CONTROLLERS:\n"
+        puts ' J - MOVE LEFT'
+        puts ' L - MOVE RIGHT'
+        puts ' K - DROP'
+        puts ' I - ROTATE'
+        puts ' M - DROP TO BOTTOM'
       end
 
       def falling_speed
@@ -39,6 +46,8 @@ module Tetris
         last_update = Time.now
 
         loop do
+          execute_user_command
+
           if Time.now - last_update > falling_speed
             @game.update
             last_update = Time.now
@@ -51,6 +60,21 @@ module Tetris
           end
 
           sleep SLEEP_LOOP
+        end
+      end
+
+      private
+
+      def execute_user_command
+        command = GetKey.getkey
+        command = command.chr if command
+
+        case command
+          when 'i', 'I' then @game.tetromino.rotate
+          when 'j', 'J' then @game.tetromino.move_left
+          when 'l', 'L' then @game.tetromino.move_right
+          when 'k', 'K' then @game.tetromino.drop
+          when 'm', 'M' then @game.tetromino.drop_to_bottom
         end
       end
     end
