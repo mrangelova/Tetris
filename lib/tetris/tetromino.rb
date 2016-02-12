@@ -100,10 +100,10 @@ module Tetris
 
     attr_reader :playfield, :piece, :top_left_position
 
-    def initialize(playfield)
+    def initialize(playfield, piece = nil)
       @playfield = playfield
       @top_left_position = INITIAL_TOP_LEFT_POSITION.dup
-      @piece = Piece.new
+      @piece = piece || Piece.new
     end
 
     def move_right
