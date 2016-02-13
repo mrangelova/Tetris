@@ -4,7 +4,8 @@ require 'gosu'
 
 module Tetris
   module GUI
-    SAVE_GAME_PATH = File.join(File.dirname(__FILE__), 'saved_game.yml')
+    SAVE_GAME_PATH  = File.join(File.dirname(__FILE__), 'saved_game.yml')
+    HIGHSCORES_PATH = File.join(File.dirname(__FILE__), 'highscores.yml')
 
     class GameWindow < Gosu::Window
       MODES = {
@@ -148,7 +149,7 @@ module Tetris
         end
 
         def highscores
-          [YAML.load(File.open(ScoringSystem::HIGHSCORES_PATH, "r"))].flatten!
+          [YAML.load(File.open(HIGHSCORES_PATH, "r"))].flatten!
         end
       end
 
@@ -279,6 +280,16 @@ module Tetris
 
         private
 
+        def submit_highscore
+          scores = [game.scoring_system.score]
+
+          scores << YAML.load(File.open(HIGHSCORES_PATH, "r")) if File.exist?(HIGHSCORES_PATH)
+
+          file = File.new(HIGHSCORES_PATH, "w")
+          file << scores.flatten.sort.reverse[0..9].to_yaml
+          file.close
+        end
+
         def save_game
           file = File.new(File.join(SAVE_GAME_PATH), "w")
           file << game.to_yaml
@@ -288,7 +299,9 @@ module Tetris
         def end_game
           SOUNDS[:play].stop
           SOUNDS[:end_game].play
-          game.scoring_system.submit_highscore
+
+          submit_highscore
+
           change_mode(:game_over)
         end
       end
