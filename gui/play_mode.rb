@@ -75,6 +75,15 @@ module Tetris
         font.draw("#{game.scoring_system.level}",
                    330, 170, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
         font.draw('NEXT PIECE:', 330, 210, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
+        font.draw('CONTROLS:', 330, 320, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
+        font.draw(':LEFT: MOVE LEFT', 330, 350, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
+        font.draw(':RIGHT: MOVE RIGHT', 330, 370, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
+        font.draw(':DOWN: SOFT DROP', 330, 390, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
+        font.draw(':SPACE: HARD DROP', 330, 410, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
+        font.draw(':UP: ROTATE', 330, 430, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
+        font.draw(':P: PAUSE GAME', 330, 450, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
+        font.draw(':S: SAVE GAME', 330, 470, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
+        font.draw(':ESC: QUIT GAME', 330, 490, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
         @grid.draw
         @next_tetromino_preview.draw
         SOUNDS[:play].play
