@@ -84,6 +84,8 @@ module Tetris
         font.draw(':P: PAUSE GAME', 330, 450, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
         font.draw(':S: SAVE GAME', 330, 470, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
         font.draw(':ESC: QUIT GAME', 330, 490, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
+        font.draw(':A: VOLUME UP', 330, 510, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
+        font.draw(':Z: VOLUME DOWN', 330, 530, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
         @grid.draw
         @next_tetromino_preview.draw
         SOUNDS[:play].play
@@ -105,10 +107,20 @@ module Tetris
           when Gosu::KbEscape then close
           when Gosu::KbP      then change_mode(:pause)
           when Gosu::KbS      then save_game
+          when Gosu::KbA      then increase_song_volume
+          when Gosu::KbZ      then decrease_song_volume
         end
       end
 
       private
+
+      def increase_song_volume
+        SOUNDS[:play].volume += 0.1
+      end
+
+      def decrease_song_volume
+        SOUNDS[:play].volume -= 0.1
+      end
 
       def submit_highscore
         scores = [game.scoring_system.score]
