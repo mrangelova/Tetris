@@ -25,7 +25,7 @@ module Tetris
     DEFAULT_NUMBER_OF_ROWS = 20
     DEFAULT_NUMBER_OF_COLUMNS = 10
 
-    attr_reader :number_of_rows, :number_of_columns, :cells
+    attr_reader :number_of_rows, :number_of_columns
 
     def initialize(number_of_rows = nil, number_of_columns = nil)
       @number_of_rows = number_of_rows || DEFAULT_NUMBER_OF_ROWS
