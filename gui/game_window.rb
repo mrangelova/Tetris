@@ -1,4 +1,5 @@
 require_relative '../lib/tetris'
+require_relative './configs'
 require 'gosu'
 
 module Tetris
@@ -182,9 +183,9 @@ module Tetris
           CELL_SIZE = 18
 
           CELL_IMAGES = {
-            'empty_cells'    => Gosu::Image.new(File.join(File.dirname(__FILE__), '..', 'media', 'default_cell.png')),
-            'occupied_cells' => Gosu::Image.new(File.join(File.dirname(__FILE__), '..', 'media', 'occupied_cell.png')),
-            'live_cells'     => Gosu::Image.new(File.join(File.dirname(__FILE__), '..', 'media', 'live_cell.png')),
+            'empty_cells'    => Gosu::Image.new(Configs::DEFAULT_CELL_IMAGE_PATH),
+            'occupied_cells' => Gosu::Image.new(Configs::OCCUPIED_CELL_IMAGE_PATH),
+            'live_cells'     => Gosu::Image.new(Configs::LIVE_CELL_IMAGE_PATH),
           }
 
           def initialize(game)
@@ -218,7 +219,7 @@ module Tetris
           X_OFFSET = 270
           Y_OFFSET = 250
           CELL_SIZE = 18
-          CELL_IMAGE = Gosu::Image.new(File.join(File.dirname(__FILE__), '..', 'media', 'live_cell.png'))
+          CELL_IMAGE = Gosu::Image.new(Configs::LIVE_CELL_IMAGE_PATH)
 
           def initialize(game)
             @game = game
@@ -232,8 +233,8 @@ module Tetris
         end
 
         SOUNDS = {
-          play:     Gosu::Song.new(File.join(File.dirname(__FILE__), '..', 'media', 'play.ogg')),
-          end_game: Gosu::Sample.new(File.join(File.dirname(__FILE__), '..', 'media', 'end.wav')),
+          play:     Gosu::Song.new(Configs::GAME_MUSIC_PATH),
+          end_game: Gosu::Sample.new(Configs::GAME_OVER_SOUND_PATH),
         }
 
         def initialize(game_window)
