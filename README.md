@@ -33,4 +33,4 @@ I would expect anything that runs Gosu/Ruby should run this, but only tested on 
 Only running ot Windows. Tested with CMD.
 
 ## Requirements
-- Ruby 2.2+
+- Ruby 2.2.3+ (could work with older versions, but not tested)
