@@ -8,23 +8,23 @@ It provides a GUI and a CLI:
 
 ## Getting started
 
-        <git clone https://github.com/mrangelova/Tetris.git>
+        git clone https://github.com/mrangelova/Tetris.git
 
 
 * GUI
 
-        <cd gui>
-        <ruby main.rb>
+        cd gui
+        ruby main.rb
 
 * CLI
 
-        <cd cli>
-        <ruby main.rb>
+        cd cli
+        ruby main.rb
 
 
 ## Running tests
 
-        <bundle exec rspec spec>
+        bundle exec rspec spec
 
 ## Platform
 - GUI
