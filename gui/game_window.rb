@@ -5,11 +5,11 @@ module Tetris
 
     class GameWindow < Gosu::Window
       MODES = {
-        play:         "PlayMode.new(self)",
-        pause:        "PauseMode.new(self)",
-        leader_board: "LeaderBoardMode.new(self)",
-        game_over:    "GameOverMode.new(self)",
-        main_menu:    "MainMenuMode.new(self)",
+        play:         PlayMode,
+        pause:        PauseMode,
+        leader_board: LeaderBoardMode,
+        game_over:    GameOverMode,
+        main_menu:    MainMenuMode,
       }
 
       attr_reader :font, :current_mode
@@ -20,7 +20,7 @@ module Tetris
         self.caption = 'Tetris'
         @font = Gosu::Font.new(self, 'Arial', 27)
         @game = Game.new
-        @current_mode = eval(MODES[:main_menu])
+        @current_mode = MODES[:main_menu].new self
       end
 
       def needs_cursor?
@@ -40,7 +40,7 @@ module Tetris
       end
 
       def change_mode(mode)
-        @current_mode = eval(MODES[mode])
+        @current_mode = MODES[mode].new self
       end
     end
   end
