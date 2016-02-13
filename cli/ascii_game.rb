@@ -3,6 +3,8 @@ require_relative './get_key'
 
 module Tetris
   module CLI
+    SAVE_GAME_PATH  = File.join(File.dirname(__FILE__), 'saved_game.yml')
+
     class AsciiGame
       def initialize()
         @game = Game.new
@@ -39,7 +41,14 @@ module Tetris
           when 'k', 'K' then @game.tetromino.drop
           when 'm', 'M' then @game.tetromino.drop_to_bottom
           when 'q', 'Q' then @user_playing = false
+          when 's', 'S' then save_game
         end
+      end
+
+      def save_game
+        file = File.new(File.join(SAVE_GAME_PATH), "w")
+        file << @game.to_yaml
+        file.close
       end
 
       def render_game
@@ -54,6 +63,7 @@ module Tetris
         puts ' I - ROTATE'
         puts ' M - DROP TO BOTTOM'
         puts ' Q - QUIT'
+        puts ' S - SAVE GAME'
       end
     end
   end
