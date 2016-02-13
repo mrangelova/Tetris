@@ -15,9 +15,9 @@ module Tetris
 
     attr_reader :playfield, :tetromino, :scoring_system, :next_tetromino
 
-    def initialize()
+    def initialize(tetromino = nil)
       @playfield = Playfield.new
-      @tetromino = Tetromino.new(@playfield)
+      @tetromino = tetromino || Tetromino.new(@playfield)
       @next_tetromino = Tetromino.new(@playfield)
       @scoring_system = ScoringSystem.new
       @last_update = Time.now
@@ -31,11 +31,11 @@ module Tetris
       if @tetromino.fallen?
         @scoring_system.increase_score @tetromino.size
         @tetromino.cells.each { |cell| @playfield.occupy_cell *cell }
+        @scoring_system.increase_number_of_rows_removed(@playfield.remove_complete_rows)
         @tetromino = @next_tetromino
         @next_tetromino = Tetromino.new(@playfield)
       else
         @tetromino.drop
-        @scoring_system.increase_number_of_rows_removed(@playfield.remove_complete_rows)
       end
 
       @last_update = Time.now
