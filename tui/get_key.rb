@@ -2,13 +2,13 @@ module Tetris
   module TUI
     module GetKey
       USE_STTY = begin
-          require 'Win32API'
-          KBHIT = Win32API.new('crtdll', '_kbhit', [ ], 'I')
-          GETCH = Win32API.new('crtdll', '_getch', [ ], 'L')
-          false
-        rescue LoadError
-          true
-        end
+        require 'Win32API'
+        KBHIT = Win32API.new('crtdll', '_kbhit', [ ], 'I')
+        GETCH = Win32API.new('crtdll', '_getch', [ ], 'L')
+        false
+      rescue LoadError
+        true
+      end
 
       def self.getkey
         if USE_STTY
