@@ -62,7 +62,7 @@ module Tetris
         puts @ascii_grid.render
         puts "\n LEVEL: #{@game.scoring_system.level}"
         puts "\n SCORE: #{@game.scoring_system.score}"
-        puts "\n CONTROLLERS:\n"
+        puts "\n CONTROLS:\n"
         puts ' J - MOVE LEFT'
         puts ' L - MOVE RIGHT'
         puts ' K - DROP'
