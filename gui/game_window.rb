@@ -4,6 +4,8 @@ require 'gosu'
 
 module Tetris
   module GUI
+    SAVE_GAME_PATH = File.join(File.dirname(__FILE__), 'saved_game.yml')
+
     class GameWindow < Gosu::Window
       MODES = {
         play:         "PlayMode.new(self)",
@@ -99,7 +101,7 @@ module Tetris
         private
 
         def load_game
-          @game_window.game = YAML.load(File.open(File.join(File.dirname(__FILE__), 'saved_game.txt')))
+          @game_window.game = YAML.load(File.open(SAVE_GAME_PATH))
           change_mode(:play)
         end
       end
@@ -278,7 +280,7 @@ module Tetris
         private
 
         def save_game
-          file = File.new(File.join(File.dirname(__FILE__), 'saved_game.txt'), "w")
+          file = File.new(File.join(SAVE_GAME_PATH), "w")
           file << game.to_yaml
           file.close
         end
