@@ -5,6 +5,8 @@ It provides a GUI and a CLI:
 
 ![Screenshot](https://github.com/mrangelova/Tetris/blob/master/media/screen.png)
 
+![Screenshot](https://github.com/mrangelova/Tetris/blob/master/media/CLI_screen.png)
+
 
 ## Getting started
 
