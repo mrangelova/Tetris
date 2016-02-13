@@ -22,6 +22,10 @@ It provides a GUI and a CLI:
         <ruby main.rb>
 
 
+## Running tests
+
+        <bundle exec rspec spec>
+
 ## Platform
 - GUI
 I would expect anything that runs Gosu/Ruby should run this, but only tested on Windows.
