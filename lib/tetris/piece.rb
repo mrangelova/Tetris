@@ -48,8 +48,8 @@ module Tetris
 
     attr_reader :shape
 
-    def initialize
-      @shape = random_shape
+    def initialize(shape = nil)
+      @shape = shape || random_shape
       @size  = @shape.row_count
     end
 
