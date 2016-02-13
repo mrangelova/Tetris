@@ -2,12 +2,12 @@ module Tetris
   module GUI
     class GameOverMode < Mode
       def draw
-        font.draw('GAME OVER', 150, 50, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
-        font.draw('SCORE:', 150, 90, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
-        font.draw("#{game.scoring_system.score}", 260, 90, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
-        font.draw('Press N to start new game', 150, 150, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
-        font.draw('Press V to view highscores', 150, 180, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
-        font.draw('Press Esc to exit', 150, 210, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
+        font.draw('GAME OVER', 150, 50, 0)
+        font.draw('SCORE:', 150, 90, 0)
+        font.draw("#{game.scoring_system.score}", 260, 90, 0)
+        font.draw('Press N to start new game', 150, 150, 0)
+        font.draw('Press V to view highscores', 150, 180, 0)
+        font.draw('Press Esc to exit', 150, 210, 0)
       end
 
       def button_down(id)

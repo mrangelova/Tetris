@@ -9,9 +9,9 @@ module Tetris
       end
 
       def draw
-        font.draw('GAME PAUSED', 150, 110, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
-        font.draw('Press R to resume', 150, 150, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
-        font.draw('Press Esc to exit', 150, 170, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
+        font.draw('GAME PAUSED', 150, 110, 0)
+        font.draw('Press R to resume', 150, 150, 0)
+        font.draw('Press Esc to exit', 150, 170, 0)
       end
     end
   end

@@ -68,24 +68,22 @@ module Tetris
       end
 
       def draw
-        font.draw('SCORE', 330, 100, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
-        font.draw("#{game.scoring_system.score}",
-                   330, 120, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
-        font.draw('LEVEL', 330, 150, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
-        font.draw("#{game.scoring_system.level}",
-                   330, 170, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
-        font.draw('NEXT PIECE:', 330, 210, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
-        font.draw('CONTROLS:', 330, 320, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
-        font.draw(':LEFT: MOVE LEFT', 330, 350, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
-        font.draw(':RIGHT: MOVE RIGHT', 330, 370, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
-        font.draw(':DOWN: SOFT DROP', 330, 390, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
-        font.draw(':SPACE: HARD DROP', 330, 410, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
-        font.draw(':UP: ROTATE', 330, 430, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
-        font.draw(':P: PAUSE GAME', 330, 450, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
-        font.draw(':S: SAVE GAME', 330, 470, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
-        font.draw(':ESC: QUIT GAME', 330, 490, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
-        font.draw(':A: VOLUME UP', 330, 510, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
-        font.draw(':Z: VOLUME DOWN', 330, 530, 0, scale_x = 1, scale_y = 1, color = 0xff_ffffff)
+        font.draw('SCORE', 330, 100, 0)
+        font.draw("#{game.scoring_system.score}", 330, 120, 0)
+        font.draw('LEVEL', 330, 150, 0)
+        font.draw("#{game.scoring_system.level}", 330, 170, 0)
+        font.draw('NEXT PIECE:', 330, 210, 0)
+        font.draw('CONTROLS:', 330, 320, 0)
+        font.draw(':LEFT: MOVE LEFT', 330, 350, 0)
+        font.draw(':RIGHT: MOVE RIGHT', 330, 370, 0)
+        font.draw(':DOWN: SOFT DROP', 330, 390, 0)
+        font.draw(':SPACE: HARD DROP', 330, 410, 0)
+        font.draw(':UP: ROTATE', 330, 430, 0)
+        font.draw(':P: PAUSE GAME', 330, 450, 0)
+        font.draw(':S: SAVE GAME', 330, 470, 0)
+        font.draw(':ESC: QUIT GAME', 330, 490, 0)
+        font.draw(':A: VOLUME UP', 330, 510, 0)
+        font.draw(':Z: VOLUME DOWN', 330, 530, 0)
         @grid.draw
         @next_tetromino_preview.draw
         SOUNDS[:play].play
