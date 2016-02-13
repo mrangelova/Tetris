@@ -16,7 +16,7 @@ module Tetris
       attr_accessor :game
 
       def initialize
-        super 550, 480
+        super 600, 540
         self.caption = 'Tetris'
         @font = Gosu::Font.new(self, 'Arial', 27)
         @game = Game.new
