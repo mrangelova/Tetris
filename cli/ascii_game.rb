@@ -42,6 +42,7 @@ module Tetris
           when 'm', 'M' then @game.tetromino.drop_to_bottom
           when 'q', 'Q' then @user_playing = false
           when 's', 'S' then save_game
+          when 'w', 'W' then load_game
         end
       end
 
@@ -49,6 +50,11 @@ module Tetris
         file = File.new(File.join(SAVE_GAME_PATH), "w")
         file << @game.to_yaml
         file.close
+      end
+
+      def load_game
+        @game = YAML.load(File.open(SAVE_GAME_PATH)) if File.exist?(SAVE_GAME_PATH)
+        @ascii_grid = AsciiGrid.new(@game)
       end
 
       def render_game
@@ -64,6 +70,7 @@ module Tetris
         puts ' M - DROP TO BOTTOM'
         puts ' Q - QUIT'
         puts ' S - SAVE GAME'
+        puts ' W - LOAD GAME' if File.exist?(SAVE_GAME_PATH)
       end
     end
   end
